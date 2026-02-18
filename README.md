@@ -1,4 +1,4 @@
-# Ballerina guide to set up New Relic
+# Ballerina guide to publish observability data to New Relic
 
 This guide will help you to set up your Ballerina application to publish metrics, traces and logs to New Relic.
 
