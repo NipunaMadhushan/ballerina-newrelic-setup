@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  fluent-bit:
+    image: newrelic/newrelic-fluentbit-output:latest
+    container_name: fluent-bit
+    ports:
+      - "2020:2020"
+    env_file:
+      - ./config/.env
+    volumes:
+      - ./config/fluent-bit/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./config/fluent-bit/parsers.conf:/fluent-bit/etc/parsers.conf
+      - ./config/fluent-bit/scripts:/fluent-bit/scripts
+      - ./logs/ballerina:/var/log/ballerina:ro
+    networks:
+      - newrelic-fluentbit
+    restart: unless-stopped
+
+networks:
+  newrelic-fluentbit:
+    driver: bridge
